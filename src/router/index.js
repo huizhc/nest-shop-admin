@@ -76,6 +76,182 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/role',
+    component: Layout,
+    redirect: '/role/list',
+    name: 'role',
+    meta: { title: '角色管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'role-list',
+        component: () => import('@/views/role/list'),
+        meta: { title: '角色列表', }
+      },
+      {
+        path: 'add',
+        name: 'role-add',
+        component: () => import('@/views/role/form'),
+        meta: { title: '新增角色', }
+      },
+      {
+        path: 'auth',
+        name: 'role-auth',
+        component: () => import('@/views/role/auth'),
+        meta: { title: '授权', },
+        hidden: true
+      },
+      {
+        path: 'edit',
+        name: 'role-edit',
+        component: () => import('@/views/role/form'),
+        meta: { title: '编辑角色', },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/banner',
+    component: Layout,
+    redirect: '/banner/list',
+    name: 'banner',
+    meta: { title: '轮播图管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'banner-list',
+        component: () => import('@/views/banner/list'),
+        meta: { title: '轮播图列表', }
+      },
+      {
+        path: 'add',
+        name: 'banner-add',
+        component: () => import('@/views/banner/form'),
+        meta: { title: '新增轮播图', }
+      },
+      {
+        path: 'edit',
+        name: 'banner-edit',
+        component: () => import('@/views/banner/form'),
+        meta: { title: '编辑轮播图', },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/goodsType',
+    component: Layout,
+    redirect: '/goodsType/list',
+    name: 'goodsType',
+    meta: { title: '商品分类管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'goodsType-list',
+        component: () => import('@/views/goodsType/list'),
+        meta: { title: '商品分类列表', }
+      },
+      {
+        path: 'add',
+        name: 'goodsType-add',
+        component: () => import('@/views/goodsType/form'),
+        meta: { title: '新增商品分类', }
+      },
+      {
+        path: 'edit',
+        name: 'goodsType-edit',
+        component: () => import('@/views/goodsType/form'),
+        meta: { title: '编辑商品分类', },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/goodsTypeAttribute',
+    component: Layout,
+    redirect: '/goodsTypeAttribute/list',
+    name: 'goodsTypeAttribute',
+    meta: { title: '商品分类属性管理', icon: 'el-icon-s-help' },
+    hidden: true,
+    children: [
+      {
+        path: 'list',
+        name: 'goodsTypeAttribute-list',
+        component: () => import('@/views/goodsTypeAttribute/list'),
+        meta: { title: '商品分类属性列表', }
+      },
+      {
+        path: 'add',
+        name: 'goodsTypeAttribute-add',
+        component: () => import('@/views/goodsTypeAttribute/form'),
+        meta: { title: '新增商品分类属性', }
+      },
+      {
+        path: 'edit',
+        name: 'goodsTypeAttribute-edit',
+        component: () => import('@/views/goodsTypeAttribute/form'),
+        meta: { title: '编辑商品分类属性', },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/manager',
+    component: Layout,
+    redirect: '/manager/list',
+    name: 'manager',
+    meta: { title: '管理员管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'manager-list',
+        component: () => import('@/views/manager/list'),
+        meta: { title: '管理员列表', }
+      },
+      {
+        path: 'add',
+        name: 'manager-add',
+        component: () => import('@/views/manager/form'),
+        meta: { title: '新增管理员', }
+      },
+      {
+        path: 'edit',
+        name: 'manager-edit',
+        component: () => import('@/views/manager/form'),
+        meta: { title: '编辑管理员', },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/access',
+    component: Layout,
+    redirect: '/access/list',
+    name: 'access',
+    meta: { title: '权限管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'access-list',
+        component: () => import('@/views/access/list'),
+        meta: { title: '权限列表', }
+      },
+      {
+        path: 'add',
+        name: 'access-add',
+        component: () => import('@/views/access/form'),
+        meta: { title: '新增权限', }
+      },
+      {
+        path: 'edit',
+        name: 'access-edit',
+        component: () => import('@/views/access/form'),
+        meta: { title: '编辑权限', },
+        hidden: true
+      }
+    ]
+  },
 
   {
     path: '/form',

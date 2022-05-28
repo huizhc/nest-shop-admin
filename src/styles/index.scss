@@ -63,3 +63,32 @@ div:focus {
 .app-container {
   padding: 20px;
 }
+
+.el-button + span {
+  margin-left: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.thead {
+  display: flex;
+  margin-bottom: 20px;  
+}
+
+.mlauto {
+  margin-left: auto;
+}
+
+a + span {
+  margin-left: 10px;
+}
+a + a {
+  margin-left: 10px;
+}
+
+.el-upload > img {
+  width: 300px;
+  height: auto;
+}

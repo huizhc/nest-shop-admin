@@ -487,25 +487,25 @@ export default {
     };
   },
   methods: {
-    onSubmit(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          if (this.form.id) {
-            accessUpdate(this.form).then((res) => {
-              this.$message.success("修改成功");
-              this.$router.push("list");
-            });
-          } else {
-            accessAdd(this.form).then((res) => {
-              this.$message.success("添加成功");
-              this.$router.push("list");
-            });
-          }
-        } else {
-          this.$message.warning("请填写内容");
-        }
-      });
-    },
+    // onSubmit(formName) {
+    //   this.$refs[formName].validate((valid) => {
+    //     if (valid) {
+    //       if (this.form.id) {
+    //         accessUpdate(this.form).then((res) => {
+    //           this.$message.success("修改成功");
+    //           this.$router.push("list?page=" + this.$route.query.prevPage);
+    //         });
+    //       } else {
+    //         accessAdd(this.form).then((res) => {
+    //           this.$message.success("添加成功");
+    //           this.$router.push("list?page=" + this.$route.query.prevPage);
+    //         });
+    //       }
+    //     } else {
+    //       this.$message.warning("请填写内容");
+    //     }
+    //   });
+    // },
     submit(e) {
       // console.log($("#goodsForm").serialize());
       // attr_id_list
@@ -525,12 +525,12 @@ export default {
       if (this.form.id) {
         goodsUpdate(this.form).then((res) => {
           this.$message.success("修改成功");
-          this.$router.push("list");
+          this.$router.push("list?page=" + this.$route.query.prevPage);
         });
       } else {
         goodsAdd(this.form).then((res) => {
           this.$message.success("添加成功");
-          this.$router.push("list");
+          this.$router.push("list?page=" + this.$route.query.prevPage);
         });
       }
     },

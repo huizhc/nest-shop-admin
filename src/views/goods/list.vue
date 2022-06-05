@@ -66,7 +66,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-            <router-link :to="'edit?id=' + scope.row._id">
+            <router-link :to="'edit?id=' + scope.row._id + '&prevPage=' + listQuery.page">
           <el-button size="small">
             编辑
           </el-button>
@@ -86,6 +86,7 @@
     </el-table>
     <div class="paginationWrap">
     <el-pagination
+    v-if="totalPages"
     layout="prev, pager, next"
     :current-page.sync="listQuery.page"
     @current-change="fetchData"
@@ -118,7 +119,11 @@ export default {
       totalPages: 0
     };
   },
-  created() {
+  mounted() {
+    let page
+    if (page = this.$route.query.page) {
+      this.listQuery.page = page * 1
+    }
     this.fetchData();
   },
   methods: {

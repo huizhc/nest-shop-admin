@@ -15,10 +15,13 @@
       border
       fit
       highlight-current-row
-    >
+            default-expand-all
+      row-key="_id"
+      :tree-props="{children: 'items'}">
+
       <el-table-column label="模块名称">
         <template slot-scope="scope">
-          {{scope.row.childNode ? '----' : '' }}{{scope.row.module_name }}
+          {{scope.row.module_name }}
         </template>
       </el-table-column>
       <el-table-column label="节点类型">
@@ -93,12 +96,7 @@ export default {
       this.listLoading = true;
       accessAll().then((res) => {
         this.listLoading = false;
-        for (let i in res.data) {
-          this.list.push(res.data[i])
-          for (let j in res.data[i].items) {
-            this.list.push({...res.data[i].items[j], childNode: true})
-          }
-        }
+        this.list = res.data
       });
     },
   },

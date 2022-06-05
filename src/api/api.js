@@ -180,7 +180,7 @@ export function bannerDelete(params) {
 
 
 
-/**商品分类 start */
+/**商品类型 start */
 
 
 export function goodsTypeAdd(data) {
@@ -218,9 +218,9 @@ export function goodsTypeDelete(params) {
   })
 }
 
-/**商品分类 end */
+/**商品类型 end */
 
-/**商品分类属性 start */
+/**商品类型属性 start */
 
 
 export function goodsTypeAttributeAdd(data) {
@@ -259,4 +259,122 @@ export function goodsTypeAttributeDelete(params) {
   })
 }
 
-/**商品分类属性 end */
+/**商品类型属性 end */
+
+
+/**商品分类 start */
+
+
+export function goodsCateAdd(data) {
+  return request({
+    url: '/admin/goodsCate/add',
+    method: 'post',
+    data
+  })
+}
+export function goodsCateAll(data) {
+  return request({
+    url: '/admin/goodsCate/all',
+    method: 'get',
+  })
+}
+export function goodsCateDetail(params) {
+  return request({
+    url: '/admin/goodsCate/detail',
+    method: 'get',
+    params
+  })
+}
+export function goodsCateUpdate(data) {
+  return request({
+    url: '/admin/goodsCate/update',
+    method: 'post',
+    data
+  })
+}
+export function goodsCateDelete(params) {
+  return request({
+    url: '/admin/goodsCate/delete',
+    method: 'post',
+    params
+  })
+}
+export function goodsCateGoodsCateTop() {
+  return request({
+    url: '/admin/goodsCate/goodsCateTop',
+    method: 'get',
+  })
+}
+
+/**商品分类 end */
+
+/**商品 start */
+
+
+export function goodsAdd(data) {
+  return request({
+    url: '/admin/goods/add',
+    method: 'post',
+    data
+  })
+}
+export function goodsList(params) {
+  return request({
+    url: '/admin/goods/list',
+    method: 'get',
+    params
+  })
+}
+export function goodsDetail(params) {
+  return request({
+    url: '/admin/goods/detail',
+    method: 'get',
+    params
+  })
+}
+export function goodsUpdate(data) {
+  return request({
+    url: '/admin/goods/update',
+    method: 'post',
+    data
+  })
+}
+export function goodsDelete(params) {
+  return request({
+    url: '/admin/goods/delete',
+    method: 'post',
+    params
+  })
+}
+
+export function goodsColorAndType() {
+  return request({
+    url: '/admin/goods/colorAndType',
+    method: 'get',
+    
+  })
+}
+
+export function goodsGoodsTypeAttribute(params) {
+  return request({
+    url: '/admin/goods/goodsTypeAttribute',
+    method: 'get',
+    params
+  })
+}
+export function goodsChangeGoodsImageColor(params) {
+  return request({
+    url: '/admin/goods/changeGoodsImageColor',
+    method: 'post',
+    params
+  })
+}
+export function goodsRemoveGoodsImage(params) {
+  return request({
+    url: '/admin/goods/removeGoodsImage',
+    method: 'post',
+    params
+  })
+}
+
+/**商品 end */

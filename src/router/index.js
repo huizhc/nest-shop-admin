@@ -144,24 +144,52 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/goodsType/list',
     name: 'goodsType',
-    meta: { title: '商品分类管理', icon: 'el-icon-s-help' },
+    meta: { title: '商品类型管理', icon: 'el-icon-s-help' },
     children: [
       {
         path: 'list',
         name: 'goodsType-list',
         component: () => import('@/views/goodsType/list'),
-        meta: { title: '商品分类列表', }
+        meta: { title: '商品类型列表', }
       },
       {
         path: 'add',
         name: 'goodsType-add',
         component: () => import('@/views/goodsType/form'),
-        meta: { title: '新增商品分类', }
+        meta: { title: '新增商品类型', }
       },
       {
         path: 'edit',
         name: 'goodsType-edit',
         component: () => import('@/views/goodsType/form'),
+        meta: { title: '编辑商品类型', },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/goodsCate',
+    component: Layout,
+    redirect: '/goodsCate/list',
+    name: 'goodsCate',
+    meta: { title: '商品分类管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'goodsCate-list',
+        component: () => import('@/views/goodsCate/list'),
+        meta: { title: '商品分类列表', }
+      },
+      {
+        path: 'add',
+        name: 'goodsCate-add',
+        component: () => import('@/views/goodsCate/form'),
+        meta: { title: '新增商品分类', }
+      },
+      {
+        path: 'edit',
+        name: 'goodsCate-edit',
+        component: () => import('@/views/goodsCate/form'),
         meta: { title: '编辑商品分类', },
         hidden: true
       }
@@ -192,6 +220,34 @@ export const constantRoutes = [
         name: 'goodsTypeAttribute-edit',
         component: () => import('@/views/goodsTypeAttribute/form'),
         meta: { title: '编辑商品分类属性', },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/goods',
+    component: Layout,
+    redirect: '/goods/list',
+    name: 'goods',
+    meta: { title: '商品管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'goods-list',
+        component: () => import('@/views/goods/list'),
+        meta: { title: '商品列表', }
+      },
+      {
+        path: 'add',
+        name: 'goods-add',
+        component: () => import('@/views/goods/form'),
+        meta: { title: '新增商品', }
+      },
+      {
+        path: 'edit',
+        name: 'goods-edit',
+        component: () => import('@/views/goods/form'),
+        meta: { title: '编辑商品', },
         hidden: true
       }
     ]

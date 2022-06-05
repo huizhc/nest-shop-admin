@@ -75,6 +75,7 @@ div:focus {
 .thead {
   display: flex;
   margin-bottom: 20px;  
+  align-items: center;
 }
 
 .mlauto {
@@ -91,4 +92,23 @@ a + a {
 .el-upload > img {
   width: 300px;
   height: auto;
+}
+
+/*配置上传*/
+
+.photoUploader div:nth-child(2){width:100%!important;height:100%!important;}   
+.photoUploader{
+    width: 120px;
+    margin: 40px auto 20px auto;
+    
+}
+
+.w200 {
+  width: 200px;
+}
+
+.paginationWrap {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }

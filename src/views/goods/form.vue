@@ -5,7 +5,6 @@
         <div class="panel-heading">增加商品</div>
         <div class="panel-body">
           <div class="table-responsive input-form goods_content">
-            
             <form id="goodsForm" @submit.prevent="submit" action="">
               <el-tabs v-model="active" type="card" tab-position="top">
                 <el-tab-pane
@@ -350,23 +349,40 @@
                 <el-tab-pane label="商品相册" name="photo" class="photo">
                   <!-- <div class="photoUploader" id="photoUploader"></div> -->
                   <!-- <div class="photoList" id="photoList"></div> -->
-                    <div id="goods_image">    
+                  <div id="goods_image">
                     <ul id="goods_image_list" class="goods_image_list clear">
-                                    <li v-for="(photo, photoIdx) in goodsImage" :key="photo._id">
-                                        <img class="pic" :src="photo.img_url" />
-                                        <div class="color_list">
-                                            <select class="relation_goods_color" @change="changeGoodsImageColor" :goods_image_id="photo._id">
-                                                <option value="0">关联颜色</option>
-                                                <template v-for="(color, colorIdx) in goodsColor">
-                                                  <option :value="color._id" :selected="color.id == photo.color_id">{{color.color_name}}</option>
-                                                </template>
-                                            </select>                                                        
-                                        </div>
+                      <li
+                        v-for="(photo, photoIdx) in goodsImage"
+                        :key="photo._id"
+                      >
+                        <img class="pic" :src="photo.img_url" />
+                        <div class="color_list">
+                          <select
+                            class="relation_goods_color"
+                            @change="changeGoodsImageColor"
+                            :data-goods_image_id="photo._id"
+                          >
+                            <option value="0">关联颜色</option>
+                            <template v-for="(color, colorIdx) in goodsColor">
+                              <option
+                                :value="color._id"
+                                :selected="color._id == photo.color_id"
+                              >
+                                {{ color.color_name }}
+                              </option>
+                            </template>
+                          </select>
+                        </div>
 
-                                        <div class="goods_image_delete" @click="removeGoodsImage" :goods_image_id="photo._id"></div>
-                                    </li>
+                        <div
+                          class="goods_image_delete"
+                          @click="removeGoodsImage"
+                          :data-idx="photoIdx"
+                          :data-goods_image_id="photo._id"
+                        ></div>
+                      </li>
                     </ul>
-                    </div>
+                  </div>
                   <el-upload
                     class="upload-demo"
                     :action="uploadUrl"
@@ -461,13 +477,13 @@ export default {
         attr_id_list: [],
         attr_value_list: [],
         goods_content: "",
-        goods_image_list: []
+        goods_image_list: [],
       },
       goods_type_attribute: "",
       checkbox: "",
       attributeList: [],
       goodsImage: [],
-      goodsColor: []
+      goodsColor: [],
     };
   },
   methods: {
@@ -498,21 +514,25 @@ export default {
         this.form.attr_id_list.push(v._id);
         this.form.attr_value_list.push(v.input);
       });
-      this.form.goods_image_list.length = 0
-      this.goods_image_list.forEach(v => {
-        this.form.goods_image_list.push((v.response && v.response.success) ? "http://localhost:3000/" + v.response.data : v.url)
-      })
+      this.form.goods_image_list.length = 0;
+      this.goods_image_list.forEach((v) => {
+        this.form.goods_image_list.push(
+          v.response && v.response.success
+            ? "http://localhost:3000/" + v.response.data
+            : v.url
+        );
+      });
       if (this.form.id) {
-            // accessUpdate(this.form).then((res) => {
-            //   this.$message.success("修改成功");
-            //   this.$router.push("list");
-            // });
-          } else {
-            goodsAdd(this.form).then((res) => {
-              this.$message.success("添加成功");
-              this.$router.push("list");
-            });
-          }
+        goodsUpdate(this.form).then((res) => {
+          this.$message.success("修改成功");
+          this.$router.push("list");
+        });
+      } else {
+        goodsAdd(this.form).then((res) => {
+          this.$message.success("添加成功");
+          this.$router.push("list");
+        });
+      }
     },
 
     handleChange(file, fileList) {
@@ -529,59 +549,20 @@ export default {
         this.attributeList = res.data;
       });
     },
-    changeGoodsImageColor (e) {
-      console.log(e.target.attributes.goods_image_id);
+    changeGoodsImageColor(e) {
+      let goods_image_id = e.target.dataset.goods_image_id;
+      let color_id = e.target.value;
+      goodsChangeGoodsImageColor({ color_id, goods_image_id });
       // console.log(e);
     },
-    removeGoodsImage (e) {
-      console.log(e.target.attributes.goods_image_id);
-      // console.log(e);
+    removeGoodsImage(e) {
+      let { goods_image_id, idx } = e.target.dataset;
+      goodsRemoveGoodsImage({ goods_image_id }).then((res) => {
+        this.goodsImage.splice(idx, 1);
+      });
     },
   },
   async mounted() {
-         //更新图库对应的颜色
-        // $(".relation_goods_color").change(function(){         
-        //    var color_id= $(this).val();
-        //    var goods_image_id=$(this).attr('goods_image_id');
-
-        //    $.get('/<%=config.adminPath%>/goods/changeGoodsImageColor',{color_id:color_id,goods_image_id:goods_image_id},function(response){
-        //      console.log(response);
-        //    });
-        // })
-
-        // //删除图片信息
-        // $(".goods_image_delete").click(function(){ 
-
-        //    var flag=confirm('您确定要删除吗?');
-        //     if(flag){
-        //         var goods_image_id=$(this).attr('goods_image_id');
-        //         var _that=this;
-
-        //         $.get('/<%=config.adminPath%>/goods/removeGoodsImage',{goods_image_id:goods_image_id},function(response){
-        //             if(response.success){
-        //                 $(_that).parent().remove();
-        //             }
-        //         });
-
-        //     }
-        // })
-
-    // $(function () {
-    //   $("#photoUploader").diyUpload({
-    //     url: "http://localhost:3000/admin/focus/imageUpload",
-    //     success: function (response) {
-    //       var photoStr =
-    //         '<input type="hidden" name="goods_image_list[]" value=' +
-    //         response.data +
-    //         " />";
-
-    //       $("#photoList").append(photoStr);
-    //     },
-    //     error: function (err) {
-    //       console.info(err);
-    //     },
-    //   });
-    // });
     goodsCateAll().then((res) => {
       this.goodsCateOptions = res.data;
     });
@@ -589,22 +570,37 @@ export default {
       this.goodsColorOptions = res.data.goodsColor;
       this.goodsTypeOptions = res.data.goodsType;
     });
-    let id
-    if (id = this.$route.query.id) {
-      goodsDetail({id}).then(res => {
-        if (res.data.goods.goods_color) { res.data.goods.goods_color = res.data.goods.goods_color.split(',') }
-        this.form = res.data.goods
-        this.goodsImage = res.data.goodsImage
-        for (let i in this.goodsColorOptions) {
-          for (let j in  res.data.goods.goods_color) {
-            if (this.goodsColorOptions[i]._id == res.data.goods.goods_color[j]) {
-              this.goodsColor.push(this.goodsColorOptions[i])
+    let id;
+    if ((id = this.$route.query.id)) {
+      goodsDetail({ id }).then((res) => {
+        if (res.data.goods.goods_color) {
+          res.data.goods.goods_color = res.data.goods.goods_color.split(",");
+        }
+        this.form = Object.assign(this.form, res.data.goods);
+        this.goodsImage = res.data.goodsImage;
+        // this.goodsAttr = res.data.goodsAttr
+        for (let color of this.goodsColorOptions) {
+          for (let color_id of res.data.goods.goods_color) {
+            if (color._id == color_id) {
+              this.goodsColor.push(color);
             }
           }
         }
-       
-        // this.goodsColor = res.data.goodsColor
-      })
+        goodsGoodsTypeAttribute({ cate_id: this.form.goods_type_id }).then(
+          ({ data: attrs }) => {
+            // attr_id_list
+            // attr_value_list
+            for (let attr_res of attrs) {
+              for (let attr of res.data.goodsAttr) {
+                if (attr_res._id == attr.attribute_id) {
+                  attr_res.input = attr.attribute_value;
+                }
+              }
+            }
+            this.attributeList = attrs;
+          }
+        );
+      });
     }
   },
 };

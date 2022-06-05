@@ -76,41 +76,7 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/role',
-    component: Layout,
-    redirect: '/role/list',
-    name: 'role',
-    meta: { title: '角色管理', icon: 'el-icon-s-help' },
-    children: [
-      {
-        path: 'list',
-        name: 'role-list',
-        component: () => import('@/views/role/list'),
-        meta: { title: '角色列表', }
-      },
-      {
-        path: 'add',
-        name: 'role-add',
-        component: () => import('@/views/role/form'),
-        meta: { title: '新增角色', }
-      },
-      {
-        path: 'auth',
-        name: 'role-auth',
-        component: () => import('@/views/role/auth'),
-        meta: { title: '授权', },
-        hidden: true
-      },
-      {
-        path: 'edit',
-        name: 'role-edit',
-        component: () => import('@/views/role/form'),
-        meta: { title: '编辑角色', },
-        hidden: true
-      }
-    ]
-  },
+
   {
     path: '/banner',
     component: Layout,
@@ -276,6 +242,41 @@ export const constantRoutes = [
         name: 'manager-edit',
         component: () => import('@/views/manager/form'),
         meta: { title: '编辑管理员', },
+        hidden: true
+      }
+    ]
+  },
+  {
+    path: '/role',
+    component: Layout,
+    redirect: '/role/list',
+    name: 'role',
+    meta: { title: '角色管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'role-list',
+        component: () => import('@/views/role/list'),
+        meta: { title: '角色列表', }
+      },
+      {
+        path: 'add',
+        name: 'role-add',
+        component: () => import('@/views/role/form'),
+        meta: { title: '新增角色', }
+      },
+      {
+        path: 'auth',
+        name: 'role-auth',
+        component: () => import('@/views/role/auth'),
+        meta: { title: '授权', },
+        hidden: true
+      },
+      {
+        path: 'edit',
+        name: 'role-edit',
+        component: () => import('@/views/role/form'),
+        meta: { title: '编辑角色', },
         hidden: true
       }
     ]

@@ -106,6 +106,34 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/nav',
+    component: Layout,
+    redirect: '/nav/list',
+    name: 'nav',
+    meta: { title: '导航管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: 'nav-list',
+        component: () => import('@/views/nav/list'),
+        meta: { title: '导航列表', }
+      },
+      {
+        path: 'add',
+        name: 'nav-add',
+        component: () => import('@/views/nav/form'),
+        meta: { title: '新增导航', }
+      },
+      {
+        path: 'edit',
+        name: 'nav-edit',
+        component: () => import('@/views/nav/form'),
+        meta: { title: '编辑导航', },
+        hidden: true
+      }
+    ]
+  },
+  {
     path: '/goodsType',
     component: Layout,
     redirect: '/goodsType/list',

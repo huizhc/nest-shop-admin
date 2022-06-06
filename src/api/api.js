@@ -378,3 +378,44 @@ export function goodsRemoveGoodsImage(params) {
 }
 
 /**商品 end */
+
+/**导航 start */
+
+
+export function navAdd(data) {
+  return request({
+    url: '/admin/nav/add',
+    method: 'post',
+    data
+  })
+}
+export function navList(params) {
+  return request({
+    url: '/admin/nav/list',
+    method: 'get',
+    params
+  })
+}
+export function navDetail(params) {
+  return request({
+    url: '/admin/nav/detail',
+    method: 'get',
+    params
+  })
+}
+export function navUpdate(data) {
+  return request({
+    url: '/admin/nav/update',
+    method: 'post',
+    data
+  })
+}
+export function navDelete(params) {
+  return request({
+    url: '/admin/nav/delete',
+    method: 'post',
+    params
+  })
+}
+
+/**导航 end */

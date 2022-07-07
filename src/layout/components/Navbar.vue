@@ -16,6 +16,7 @@
               Home
             </el-dropdown-item>
           </router-link>
+            <el-dropdown-item @click.native="handleClear">clear</el-dropdown-item>
           <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
             <el-dropdown-item>Github</el-dropdown-item>
           </a>
@@ -35,6 +36,7 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
+import { systemClearCache } from '@/api/api'
 
 export default {
   components: {
@@ -54,7 +56,12 @@ export default {
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-    }
+    },
+    handleClear () {
+      systemClearCache().then(res => {
+        this.$message.success('清除成功')
+      })
+    },
   }
 }
 </script>

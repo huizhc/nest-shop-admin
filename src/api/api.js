@@ -412,10 +412,21 @@ export function navUpdate(data) {
 }
 export function navDelete(params) {
   return request({
-    url: '/admin/nav/delete',
+    url: '/admin/system/clearCache',
     method: 'post',
     params
   })
 }
 
 /**导航 end */
+
+/**系统 start */
+
+export function systemClearCache() {
+  return request({
+    url: '/admin/system/clearCache',
+    method: 'post',
+  })
+}
+
+/**系统 end */

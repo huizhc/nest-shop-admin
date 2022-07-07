@@ -80,7 +80,7 @@
                       >
                         <img
                           v-if="form.goods_img"
-                          :src="form.goods_img"
+                          :src="form.goods_img | parseUrl"
                           class="banner"
                         />
                         <i v-else class="el-icon-plus avatar-uploader-icon" />
@@ -355,7 +355,7 @@
                         v-for="(photo, photoIdx) in goodsImage"
                         :key="photo._id"
                       >
-                        <img class="pic" :src="photo.img_url" />
+                        <img class="pic" :src="photo.img_url | parseUrl" />
                         <div class="color_list">
                           <select
                             class="relation_goods_color"
@@ -423,6 +423,7 @@ import {
   goodsRemoveGoodsImage,
 } from "@/api/api";
 import VueUeditorWrap from "vue-ueditor-wrap"; // ES6 Module
+import { isExternal } from "@/utils/validate";
 
 export default {
   components: {
@@ -603,6 +604,15 @@ export default {
       });
     }
   },
+  filters: {
+        parseUrl(val) {
+        if (isExternal(val)) {
+          return val
+        }
+        return 'http://localhost:3000/' + val
+    }
+
+  }
 };
 </script>
 

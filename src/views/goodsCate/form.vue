@@ -24,7 +24,7 @@
           name="file"
           :on-success="
             (res, file) => {
-              form.cate_img = 'http://localhost:3000/' + res.data;
+              form.cate_img = res.data;
             }
           "
         >
@@ -82,7 +82,7 @@ import {
 export default {
   data() {
     return {
-      uploadUrl: "http://localhost:3000/admin/focus/imageUpload",
+      uploadUrl: imageUpload,
       options: [],
       form: {
         id: this.$route.query.id,

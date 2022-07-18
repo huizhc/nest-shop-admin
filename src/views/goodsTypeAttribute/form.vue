@@ -50,11 +50,11 @@
 </template>
 
 <script>
-import {goodsTypeAll, goodsTypeAttributeAdd,goodsTypeDetail , goodsTypeAttributeAll, goodsTypeAttributeDetail, goodsTypeAttributeUpdate, goodsTypeAttributeDelete } from "@/api/api";
+import {imageUpload,goodsTypeAll, goodsTypeAttributeAdd,goodsTypeDetail , goodsTypeAttributeAll, goodsTypeAttributeDetail, goodsTypeAttributeUpdate, goodsTypeAttributeDelete } from "@/api/api";
 export default {
   data() {
     return {
-      uploadUrl: "http://localhost:3000/admin/focus/imageUpload",
+      uploadUrl: imageUpload,
       options: [],
       form: {
         _id: this.$route.query.id,

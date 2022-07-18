@@ -44,10 +44,11 @@
 </template>
 
 <script>
+import { imageUpload } from '@/api/api'
 export default {
   data() {
     return {
-      uploadUrl: 'http://localhost:3000/admin/focus/imageUpload',
+      uploadUrl: imageUpload,
       form: {
         name: '',
         region: '',

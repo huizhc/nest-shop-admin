@@ -47,11 +47,11 @@
 </template>
 
 <script>
-import { navAdd, navAll, navDetail, navUpdate, navDelete } from "@/api/api";
+import { navAdd, navAll, navDetail, navUpdate, navDelete,imageUpload } from "@/api/api";
 export default {
   data() {
     return {
-      uploadUrl: "http://localhost:3000/admin/focus/imageUpload",
+      uploadUrl: imageUpload,
       options: [],
       form: {
         id: this.$route.query.id,
@@ -86,7 +86,7 @@ export default {
       });
     },
     onUploadImgSuccess(res, file) {
-      this.form.focus_img = "http://localhost:3000/" + res.data;
+      this.form.focus_img = res.data ;
     },
   },
   mounted() {

@@ -1,5 +1,7 @@
 import request from '@/utils/request'
 /**角色管理 start */
+export const imageUpload = process.env.VUE_APP_BASE_API + '/admin/focus/imageUpload'
+
 export function roleAdd(data) {
   return request({
     url: '/admin/role/add',

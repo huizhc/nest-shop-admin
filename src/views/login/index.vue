@@ -9,7 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">梨商城后台管理系统</h3>
       </div>
 
       <el-form-item prop="username">
@@ -71,7 +71,7 @@
 
       <div class="tips">
         <span style="margin-right: 20px">username: admin</span>
-        <span> password: any</span>
+        <span> password: 123456</span>
       </div>
     </el-form>
   </div>
@@ -84,7 +84,7 @@ export default {
   name: "Login",
   data() {
     return {
-      codeImg: "http://localhost:3000/admin/login/code",
+      codeImg: process.env.VUE_APP_BASE_API + "/admin/login/code",
       loginForm: {
         username: "",
         password: "",
@@ -144,7 +144,7 @@ export default {
       });
     },
     changeImg() {
-      this.codeImg = "http://localhost:3000/admin/login/code?t=" + Date.now();
+      this.codeImg = process.env.VUE_APP_BASE_API + "/admin/login/code?t=" + Date.now();
     },
   },
 };

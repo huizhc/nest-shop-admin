@@ -68,13 +68,12 @@
                       <el-upload
                         style="display: inline"
                         class="avatar-uploader"
-                        action="http://localhost:3000/admin/focus/imageUpload"
+                        :action="uploadUrl"
                         :show-file-list="false"
                         name="file"
                         :on-success="
                           (res, file) => {
-                            form.goods_img =
-                              'http://localhost:3000/' + res.data;
+                            form.goods_img =res.data
                           }
                         "
                       >
@@ -409,6 +408,7 @@
 
 <script>
 import {
+  imageUpload,
   accessAccessTop,
   accessAdd,
   accessDetail,
@@ -431,7 +431,7 @@ export default {
   },
   data() {
     return {
-      uploadUrl: "http://localhost:3000/admin/focus/imageUpload",
+      uploadUrl: imageUpload,
       goods_image_list: [],
       // goods_image_list: [
       //   {
@@ -488,25 +488,6 @@ export default {
     };
   },
   methods: {
-    // onSubmit(formName) {
-    //   this.$refs[formName].validate((valid) => {
-    //     if (valid) {
-    //       if (this.form.id) {
-    //         accessUpdate(this.form).then((res) => {
-    //           this.$message.success("修改成功");
-    //           this.$router.push("list?page=" + this.$route.query.prevPage);
-    //         });
-    //       } else {
-    //         accessAdd(this.form).then((res) => {
-    //           this.$message.success("添加成功");
-    //           this.$router.push("list?page=" + this.$route.query.prevPage);
-    //         });
-    //       }
-    //     } else {
-    //       this.$message.warning("请填写内容");
-    //     }
-    //   });
-    // },
     submit(e) {
       // console.log($("#goodsForm").serialize());
       // attr_id_list
@@ -519,19 +500,21 @@ export default {
       this.goods_image_list.forEach((v) => {
         this.form.goods_image_list.push(
           v.response && v.response.success
-            ? "http://localhost:3000/" + v.response.data
+            ? v.response.data
             : v.url
         );
       });
       if (this.form.id) {
         goodsUpdate(this.form).then((res) => {
           this.$message.success("修改成功");
-          this.$router.push("list?page=" + this.$route.query.prevPage);
+          // this.$router.push("list?page=" + this.$route.query.prevPage);
+          this.$router.back()
         });
       } else {
         goodsAdd(this.form).then((res) => {
           this.$message.success("添加成功");
-          this.$router.push("list?page=" + this.$route.query.prevPage);
+          // this.$router.push("list?page=" + this.$route.query.prevPage);
+          this.$router.back()
         });
       }
     },
@@ -609,7 +592,7 @@ export default {
         if (isExternal(val)) {
           return val
         }
-        return 'http://localhost:3000/' + val
+        return '/' + val
     }
 
   }
